@@ -9,6 +9,10 @@ export default class BaseRepository {
     })
   }
 
+  async findById (id) {
+    return this.model.findByPk(id)
+  }
+
   async create (object) {
     return this.model.create(object)
   }
