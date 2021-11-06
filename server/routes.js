@@ -8,7 +8,7 @@ const routes = express()
 routes.post('/files', JwtAuth, fileController.upload)
 routes.get('/files/:name', fileController.download)
 
-routes.post('/users', JwtAuth, userController.register)
+routes.post('/users', userController.register)
 routes.get('/users', JwtAuth, userController.getAll)
 routes.post('/users/login', userController.login)
 
