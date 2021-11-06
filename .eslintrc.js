@@ -13,6 +13,7 @@ module.exports = {
   rules: {
     'linebreak-style': ['error', 'windows'],
     'no-unused-vars': 'off',
-    camelcase: 'off'
+    camelcase: 'off',
+    'prefer-regex-literals': 'off'
   }
 }
