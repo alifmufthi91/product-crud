@@ -9,11 +9,11 @@ User.init({
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4
   },
-  firstName: {
+  first_name: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  lastName: {
+  last_name: {
     type: DataTypes.STRING
   },
   email: {
@@ -24,22 +24,28 @@ User.init({
     type: DataTypes.STRING,
     allowNull: false
   },
-  createdAt: {
+  created_at: {
     type: DataTypes.BIGINT,
     defaultValue: new Date().getTime(),
     allowNull: false
   },
-  updatedAt: {
+  updated_at: {
     type: DataTypes.BIGINT,
-    defaultValue: new Date().getTime()
+    defaultValue: null
   }
 }, {
   sequelize,
   modelName: 'User',
-  underscored: true,
-  defaultScope: {
-    attributes: { exclude: ['password'] }
-  }
+  createdAt: false,
+  updatedAt: false,
+  underscored: true
 })
+
+User.prototype.toJSON = function () {
+  const values = Object.assign({}, this.get())
+
+  delete values.password
+  return values
+}
 
 export default User

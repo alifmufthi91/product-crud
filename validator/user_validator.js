@@ -31,4 +31,23 @@ userValidator.register = Joi.object().keys({
     })
 })
 
+userValidator.login = Joi.object().keys({
+  email: Joi.string().required()
+    .pattern(emailRegex)
+    .messages({
+      'string.empty': 'email cannot be an empty',
+      'string.pattern.base': 'email is invalid',
+      'any.required': 'email is required'
+    }),
+  password: Joi.string().required()
+    .min(8)
+    .pattern(passwordRegex)
+    .messages({
+      'string.empty': 'password cannot be an empty',
+      'string.min': 'password should have a minimum length of {#limit}',
+      'string.pattern.base': 'password must include minimum eight characters, at least one letter and one number',
+      'any.required': 'password is required'
+    })
+})
+
 export default userValidator
