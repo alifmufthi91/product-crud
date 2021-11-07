@@ -14,7 +14,7 @@ userController.register = async (req, res, next) => {
     const validationResult = userValidator.register.validate(req.body)
     assertTrue(!validationResult.error,
       new ParamIllegal(validationResult.error ? validationResult.error.message : ''))
-    const user = await userService.add(validationResult.value)
+    const user = await userService.register(validationResult.value)
     responseUtil.success(res, { user })
   } catch (e) {
     logger().error(`user registration failed, error = ${e}`)
@@ -40,7 +40,7 @@ userController.login = async (req, res, next) => {
 
 userController.getAll = async (req, res, next) => {
   try {
-    logger().info(`get all user request, data = ${objectToLogStr(req.body)}`)
+    logger().info('get all user request')
     const users = await userService.getAll()
     responseUtil.success(res, { users })
   } catch (e) {

@@ -23,8 +23,8 @@ userService.login = async (email, password) => {
   return token
 }
 
-userService.add = async (user) => {
-  logger().info(`add new user, user = ${objectToLogStr(user)}`)
+userService.register = async (user) => {
+  logger().info(`register new user, user = ${objectToLogStr(user)}`)
   assertTrue(!(await userRepository.findByEmail(user.email)),
     new ParamIllegal('email already registered'))
   const newUser = await userRepository.create({
@@ -33,7 +33,7 @@ userService.add = async (user) => {
     email: user.email,
     password: sha1(user.password)
   })
-  logger().info('add new user success')
+  logger().info('register new user success')
   return newUser
 }
 

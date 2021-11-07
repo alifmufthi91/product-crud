@@ -20,4 +20,8 @@ export default class BaseRepository {
   async build (object) {
     return this.model.build(object)
   }
+
+  async deleteById (id) {
+    return this.model.destroy({ where: { id: id } })
+  }
 }
