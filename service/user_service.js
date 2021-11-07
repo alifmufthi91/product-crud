@@ -38,7 +38,7 @@ userService.register = async (user) => {
 }
 
 userService.getAll = async () => {
-  logger().info('geting all user')
+  logger().info('getting all user')
   const users = await userRepository.findAll()
   logger().info('getting all user success')
   return users

@@ -15,5 +15,8 @@ routes.post('/users/login', userController.login)
 
 routes.post('/products', JwtAuth, productController.register)
 routes.get('/products', JwtAuth, productController.getAll)
+routes.get('/products/:id', JwtAuth, productController.getById)
+routes.put('/products/:id', JwtAuth, productController.update)
+routes.delete('/products/:id', JwtAuth, productController.delete)
 
 export default routes
