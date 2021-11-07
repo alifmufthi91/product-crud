@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec babel-node index.js"
+    "dev": "nodemon --exec babel-node index.js",
+    "db:init": "node ./migrations/init",
+    "start": "npm run db:init || npm run dev"
   },
   "author": "alif mufthi",
   "license": "ISC",
