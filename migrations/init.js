@@ -17,5 +17,5 @@ const queryFile = fs.readFileSync(filePath).toString()
 dbConnection.query(queryFile, function (err, results) {
   if (err) throw err
   console.log(results)
-  exit(1)
+  exit()
 })
