@@ -27,7 +27,7 @@ services:
     env_file:
       - .env
     volumes:
-      - /home/ubuntu/file_directory/images:/file_directory/images
+      - /home/ubuntu/file_directory/images:$FILE_STORAGE
 
 volumes: 
   db-config:
