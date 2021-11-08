@@ -52,5 +52,7 @@ docker compose up
 |Delete Product |/api/products/:id|DELETE|
 |Get All Products |/api/products|GET|
 |Get Product |/api/products/:id|GET|
+
+
 for details, please look into this file using Postman Collection
 `ProductCRUD.postman_collection.json`
