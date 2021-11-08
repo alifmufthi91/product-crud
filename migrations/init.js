@@ -14,8 +14,10 @@ const dbConnection = mysql.createConnection({
 const filePath = path.join(__dirname, './01-product-crud.sql')
 const queryFile = fs.readFileSync(filePath).toString()
 
+console.log("Initiating Database Schema")
 dbConnection.query(queryFile, function (err, results) {
   if (err) throw err
   console.log(results)
+  console.log("Initiating Database Schema Success")
   exit()
 })
