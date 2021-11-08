@@ -10,12 +10,12 @@ Ini adalah aplikasi backend sederhana dimana user dapat mendaftar dan melakukan 
 ## Getting Started
 ``` sh
 #  Clone this repo to your local machine using
-git clone https://github.com/alifmufthi91/product-crud.git
+git clone git@github.com:alifmufthi91/product-crud.git
 
 #  Get into the directory
 cd product-crud
 
-#  Copy .env-example and  create your own .env file
+#  Copy .env-example and modify the .env file
 cp .env-example .env
 
 #  Install dependencies
@@ -24,6 +24,20 @@ npm install
 #  Run the server locally
 npm start
 
+```
+Or you can use Docker Compose
+``` sh
+#  Clone this repo to your local machine using or use Docker app
+git clone git@github.com:alifmufthi91/product-crud.git
+
+#  Get into the directory
+cd product-crud
+
+#  Copy .env-example and modify the .env file
+cp .env-example .env
+
+#  Compose using docker
+docker compose up
 ```
 ## API List
 |API|Routes|Method|
@@ -38,4 +52,5 @@ npm start
 |Delete Product |/api/products/:id|DELETE|
 |Get All Products |/api/products|GET|
 |Get Product |/api/products/:id|GET|
-
+for details, please look into this file using Postman Collection
+`ProductCRUD.postman_collection.json`
