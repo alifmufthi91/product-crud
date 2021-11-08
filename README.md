@@ -10,7 +10,7 @@ Ini adalah aplikasi backend sederhana dimana user dapat mendaftar dan melakukan 
 ## Getting Started
 ``` sh
 #  Clone this repo to your local machine using
-git clone git@github.com:alifmufthi91/product-crud.git
+git clone https://github.com/alifmufthi91/product-crud.git
 
 #  Get into the directory
 cd product-crud
