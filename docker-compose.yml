@@ -1,0 +1,30 @@
+version: '3'
+services:
+  mysqldb:
+    image: mysql
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: product-crud
+    ports:
+      - 3306:3306
+    volumes: 
+      - db-config:/etc/mysql
+      - db-data:/var/lib/mysql
+      - ./db/backup/files/:/data_backup/data
+  product-crud:
+    container_name: product-crud
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysqldb
+    restart: always
+    ports:
+      - '3003:3003'
+    env_file:
+      - .env
+    volumes:
+      - /home/ubuntu/file_directory/images:/file_directory/images
