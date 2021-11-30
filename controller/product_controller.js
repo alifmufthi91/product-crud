@@ -1,7 +1,7 @@
 import { logger } from 'express-glass'
 import ParamIllegal from '../error/param_illegal'
 import productService from '../service/product_service'
-import { assertTrue, assertNotNull } from '../util/assert_util'
+import { assertNotNull, assertTrue } from '../util/assert_util'
 import { objectToLogStr } from '../util/log_util'
 import responseUtil from '../util/response_util'
 import productValidator from '../validator/product_validator'
@@ -25,7 +25,7 @@ productController.register = async (req, res, next) => {
 productController.getAll = async (req, res, next) => {
   try {
     logger().info('get all product request')
-    const products = await productService.getAll()
+    const products = await productService.getAll(req.query)
     responseUtil.success(res, { products })
   } catch (e) {
     logger().error(`get all products failed, error = ${e}`)

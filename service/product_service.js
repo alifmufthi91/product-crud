@@ -1,8 +1,10 @@
 import { logger } from 'express-glass'
+import DataNotFound from '../error/data_not_found'
 import ProductRepository from '../repository/product_repository'
 import { assertNotNull } from '../util/assert_util'
 import { objectToLogStr } from '../util/log_util'
-import DataNotFound from '../error/data_not_found'
+import getProductConditions from '../util/query/product_query'
+import pagedData from '../util/response/paged_data'
 
 const productRepository = new ProductRepository()
 const productService = {}
@@ -14,11 +16,20 @@ productService.register = async (product) => {
   return newProduct
 }
 
-productService.getAll = async () => {
+productService.getAll = async (query) => {
   logger().info('getting all product')
-  const products = await productRepository.findAll()
+  const { size, page, order_by, order_direction } = query
+  const pageSize = parseInt(size) || 12
+  const start = page ? (parseInt(page) * pageSize) - pageSize : null || 0
+  const products = await productRepository.findAndCountAll({
+    limit: pageSize,
+    offset: start,
+    order: order_by ? [[order_by, order_direction || 'DESC']] : null,
+    where: getProductConditions(query)
+  })
+  const totalPage = Math.ceil(products.count / pageSize)
   logger().info('getting all product success')
-  return products
+  return pagedData(products.rows, products.count, totalPage)
 }
 
 productService.getById = async (productId) => {

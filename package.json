@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm run db:init && nodemon --exec babel-node index.js",
+    "dev": "nodemon --exec babel-node index.js",
     "db:init": "node ./migrations/init",
     "start": "npm run build && npm run db:init && node dist/index.js",
     "build-babel": "babel ./ --out-dir dist/ --ignore ./node_modules,./babel.config.json,./package.json,./npm-debug.log,./.git --copy-files",

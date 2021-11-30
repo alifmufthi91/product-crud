@@ -3,25 +3,35 @@ export default class BaseRepository {
     this.model = model
   }
 
-  async findAll (attributes) {
-    return this.model.findAll({
-      attributes
-    })
+  async findAll (options) {
+    return this.model.findAll(options)
   }
 
-  async findById (id) {
-    return this.model.findByPk(id)
+  async findOne (options) {
+    return this.model.findOne(options)
   }
 
-  async create (object) {
-    return this.model.create(object)
+  async findAndCountAll (options) {
+    return this.model.findAndCountAll(options)
   }
 
-  async build (object) {
-    return this.model.build(object)
+  async findByPk (primaryKey, options) {
+    return this.model.findByPk(primaryKey, options)
   }
 
-  async deleteById (id) {
-    return this.model.destroy({ where: { id: id } })
+  async create (object, options) {
+    return this.model.create(object, options)
+  }
+
+  build (object, options) {
+    return this.model.build(object, options)
+  }
+
+  async update (object, options) {
+    return this.model.update(object, options)
+  }
+
+  async aggregate (attribute, aggregateFunction, options) {
+    return this.model.aggregate(attribute, aggregateFunction, options)
   }
 }
