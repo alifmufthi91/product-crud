@@ -1,4 +1,4 @@
-import Product from '../model/product'
+import { Product } from '../model'
 import BaseRepository from './base_repository'
 
 export default class ProductRepository extends BaseRepository {

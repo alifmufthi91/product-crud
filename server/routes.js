@@ -11,6 +11,7 @@ routes.get('/files/:name', fileController.download)
 
 routes.post('/users', userController.register)
 routes.get('/users', JwtAuth, userController.getAll)
+routes.get('/users/:id', JwtAuth, userController.getById)
 routes.post('/users/login', userController.login)
 
 routes.post('/products', JwtAuth, productController.register)

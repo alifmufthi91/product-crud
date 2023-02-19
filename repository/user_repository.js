@@ -1,4 +1,4 @@
-import User from '../model/user'
+import { Product, User } from '../model'
 import BaseRepository from './base_repository'
 
 export default class UserRepository extends BaseRepository {
@@ -11,6 +11,12 @@ export default class UserRepository extends BaseRepository {
       where: {
         email
       }
+    })
+  }
+
+  async findAllAndProducts () {
+    return this.model.findAll({
+      include: Product
     })
   }
 }

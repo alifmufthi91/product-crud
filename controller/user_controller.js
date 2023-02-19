@@ -49,4 +49,15 @@ userController.getAll = async (req, res, next) => {
   }
 }
 
+userController.getById = async (req, res, next) => {
+  try {
+    logger().info('get user by id request')
+    const user = await userService.getById(req.params.id)
+    responseUtil.success(res, { user })
+  } catch (e) {
+    logger().error(`get user by id failed, error = ${e}`)
+    responseUtil.fail(res, e)
+  }
+}
+
 export default userController

@@ -1,7 +1,7 @@
 import multer from 'multer'
-import env from '../config/env'
-import { v4 } from 'uuid'
 import path from 'path'
+import { v4 } from 'uuid'
+import env from '../config/env'
 import ParamIllegal from '../error/param_illegal'
 
 const storage = multer.diskStorage({
@@ -24,5 +24,5 @@ export const uploadFile = multer(
       }
       callback(null, true)
     },
-    limits: { fileSize: env.FILE_MAXIMUM_SIZE }
+    limits: { fileSize: Number(env.FILE_MAXIMUM_SIZE) }
   }).single('file')

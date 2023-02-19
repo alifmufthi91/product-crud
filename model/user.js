@@ -1,51 +1,49 @@
-import { DataTypes, Model, Sequelize } from 'sequelize'
-import sequelize from '../database/sequelize'
+import { Model } from 'sequelize'
 
-class User extends Model {}
-
-User.init({
-  id: {
-    primaryKey: true,
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4
-  },
-  first_name: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  last_name: {
-    type: DataTypes.STRING
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  created_at: {
-    type: DataTypes.BIGINT,
-    defaultValue: new Date().getTime(),
-    allowNull: false
-  },
-  updated_at: {
-    type: DataTypes.BIGINT,
-    defaultValue: null
+module.exports = (sequelize, DataTypes) => {
+  class User extends Model {
+    static associate (models) {
+      const { Product } = models
+      User.hasMany(Product, { foreignKey: 'uploader_id' , as: 'products'})
+    }
   }
-}, {
-  sequelize,
-  modelName: 'User',
-  createdAt: false,
-  updatedAt: false,
-  underscored: true
-})
 
-User.prototype.toJSON = function () {
-  const values = Object.assign({}, this.get())
+  User.init({
+    id: {
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+      autoIncrement: true
+    },
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    last_name: {
+      type: DataTypes.STRING
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    password: {
+      type: DataTypes.BLOB('long'),
+      allowNull: false
+    }
+  }, {
+    sequelize,
+    modelName: 'User',
+    tableName: 'users',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
+    paranoid: true,
+    underscored: true,
+    defaultScope: {
+      attributes: {
+        exclude: ['password']
+      }
+    }
+  })
 
-  delete values.password
-  return values
+  return User
 }
-
-export default User
